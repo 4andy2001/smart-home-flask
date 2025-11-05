@@ -42,7 +42,7 @@ def read_sensors():
 
     s = socket.socket()         # Create a socket object
     # host = socket.gethostname() # Get local machine name
-    print(f"calling connect(), host = {host})
+    print(f"calling connect(), host = {host}")
 
     s.connect((host, port))
     print("returned from connect()")

@@ -37,10 +37,10 @@ $ sudo cp  -rf smart-home-flask /opt/docker
 
 * Create systemd service file *
 
-Create file called syart-home-flask.service and put it in /etc/systemd/system
+Create file called start-home-flask.service and put it in /etc/systemd/system
 smart-home-flask.service:
 [Unit]
-Description=Startup of the smart-home-mqtt-subd-tls docker container.  
+Description=Startup of the smart-home-flask docker container.  
 After=smart-home-mqtt-tls-subd.service
 Requires=smart-home-mqtt-tls-subd.service
 
