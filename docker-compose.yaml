@@ -1,0 +1,7 @@
+services:
+  smart-home-flask:
+    image: smart-home-flask
+    container_name: smart-home-flask
+    build: .
+    ports:
+      - "80:80"

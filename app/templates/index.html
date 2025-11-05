@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- This example from:
+     https://iq.opengenus.org/single-page-application-with-flask-ajax/ 
+-->
+
+<!-- 
+     The <span> tag is an inline container used to mark up a part of a text, 
+     or a part of a document.
+     The <span> tag is easily styled by CSS or manipulated with JavaScript using 
+     the class or id attribute.
+     The <span> tag is much like the <div> element, but <div> is a block-level element 
+     and <span> is an inline element.
+-->
+
+<!-- 
+     This JavaScript example uses a type attribute: <script type="text/javascript">.
+     The type attribute is not required. JavaScript is the default scripting language in HTML.
+-->
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Smart Home</title>
+    </head>
+    <body>
+        <h1>Home Climate</h1>
+        Hallway Time: <span id="time_hallway">{{ time_hallway }}</span>
+        <br><br>
+        Hallway temperature: <span id="temperature_hallway">{{ temperature_hallway }}</span>
+        <br><br>
+        Hallway humidity: <span id="humidity_hallway">{{ humidity_hallway }}</span>
+        <br><br>
+        Hallway pressure: <span id="pressure_hallway">{{ pressure_hallway }}</span>
+        <br><br>
+        Outside Time: <span id="time_outside">{{ time_outside }}</span>
+        <br><br>
+        Outside temperature: <span id="temperature_outside">{{ temperature_outside }}</span>
+        <br><br>
+        Outside humidity: <span id="humidity_outside">{{ humidity_outside }}</span>
+        <br><br>
+        Outside pressure: <span id="pressure_outside">{{ pressure_outside }}</span>
+    </body>
+
+    <script type="text/javascript">
+        var intervalId = setInterval(function() {
+        const request = new XMLHttpRequest();
+        request.open('POST', `/read_sensors`);
+        request.onload = () => {
+           const response = request.responseText;
+           const obj = JSON.parse(response);
+           document.getElementById('time_hallway').innerHTML = obj.time_hallway;
+           document.getElementById('temperature_hallway').innerHTML = obj.temperature_hallway;
+           document.getElementById('humidity_hallway').innerHTML = obj.humidity_hallway;
+           document.getElementById('pressure_hallway').innerHTML = obj.pressure_hallway;
+           document.getElementById('temperature_outside').innerHTML = obj.temperature_outside;
+           document.getElementById('humidity_outside').innerHTML = obj.humidity_outside;
+           document.getElementById('pressure_outside').innerHTML = obj.pressure_outside;           
+           document.getElementById('time_outside').innerHTML = obj.time_outside;            
+         }; 
+        request.send();
+
+         }, 10000);
+    </script>
+
+</html>
+
+
