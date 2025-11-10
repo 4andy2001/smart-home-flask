@@ -1,5 +1,8 @@
+# Smart Home Flask
 
-*** Dockerfile ***
+## Build Image
+
+### Dockerfile
 
 This repo will be built in stages
 
@@ -20,25 +23,30 @@ The docker file Dockerfile runs through the following steps:
  - point the container to the application directory  
  - the run command. 
 
-*** Build and run image ***
-
+### Build
 The command to build the image:
-$ docker build -t smart-home-flask .
+```
+docker build -t smart-home-flask .
+```
 
+## Run Image
 The command to run the image is:
-$ docker run -d -p 80:80 --name smart-home-flask smart-home-flask
-
+```
+docker run -d -p 80:80 --name smart-home-flask smart-home-flask
+```
 Alternatively, you can use docker-compose to build and run the image with:
-$ docker-compose up -d
+```
+docker-compose up -d
+```
 
-*** Deploy ***
-$ sudo mkdir /opt/docker
-$ sudo cp  -rf smart-home-flask /opt/docker
-
-* Create systemd service file *
-
-Create file called start-home-flask.service and put it in /etc/systemd/system
+## Deploy 
+```
+sudo mkdir /opt/docker
+sudo cp  -rf smart-home-flask /opt/docker
+```
+Create systemd service file called start-home-flask.service and put it in /etc/systemd/system
 smart-home-flask.service:
+```
 [Unit]
 Description=Startup of the smart-home-flask docker container.  
 After=smart-home-mqtt-tls-subd.service
@@ -52,3 +60,4 @@ ExecStop=/bin/bash -c "docker compose -f /opt/docker/smart-home-flask/docker-com
 
 [Install]
 WantedBy=multi-user.target
+```
