@@ -3,5 +3,11 @@ services:
     image: smart-home-flask
     container_name: smart-home-flask
     build: .
+    networks:
+      - local-network
     ports:
       - "80:80"
+
+networks:
+  local-network:
+    external: true
