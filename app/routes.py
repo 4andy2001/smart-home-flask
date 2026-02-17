@@ -3,8 +3,9 @@ import json
 from flask import render_template
 from app import app
 
-host = "enodigm.com"
+host = "smart-home-mqtt-subscriber"  # Use the service name defined in docker-compose.yaml
 port = 12345                # Reserve a port for the sensor server
+
 
 @app.route("/read_sensors", methods=["POST"])
 def read_sensors():
@@ -19,21 +20,6 @@ def read_sensors():
     print(f'json_byte_array len = {len(json_byte_array)} ')
     json_string = json_byte_array.decode()
     print(f'json_string = " {json_string}')
-
-    '''
-    s = socket.socket()         # Create a socket object
-    # host = socket.gethostname() # Get local machine name
-    print(f"calling connect(), host = {host}")
-
-    s.connect((host, port))
-    print("returned from connect()")
-    json_byte_array = s.recv(1024)
-
-    print(f'json_byte_array len = {len(json_byte_array)} ')
-    json_string = json_byte_array.decode()
-    print(f'json_string = " {json_string}')
-    s.close     
-    '''
 
     return (json_string)
 
