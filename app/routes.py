@@ -15,7 +15,12 @@ def read_sensors():
        print(f"calling connect(), host = {host}")
        s.connect((host, port))
        print("returned from connect()")
-       json_byte_array = s.recv(1024)     
+       json_byte_array = b''
+       while True:
+           chunk = s.recv(1024)
+           if not chunk:
+               break
+           json_byte_array += chunk
 
     print(f'json_byte_array len = {len(json_byte_array)} ')
     json_string = json_byte_array.decode()
