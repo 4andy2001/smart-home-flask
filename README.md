@@ -61,3 +61,8 @@ ExecStop=/bin/bash -c "docker compose -f /opt/docker/smart-home-flask/docker-com
 [Install]
 WantedBy=multi-user.target
 ```
+
+## Unit Testing
+```
+cd /home/ashepard/Projects/smart-home/smart-home-flask
+python -m pytest tests/test_routes.py -v```
